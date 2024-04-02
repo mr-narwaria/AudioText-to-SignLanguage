@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}SignUp Page{% endblock title %}
+
+{% block body %}
+
+<div class="container rounded h-75 my-5 pb-3" style="max-width: 700px;">
+    <h2 class="text-uppercase text-center mb-4 my-4 py-3">Create an account</h2>
+
+
+{% comment %} 
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %} {% endcomment %}
+
+
+
+
+    <form method="post" action="/signup/">
+        {% csrf_token %}
+
+
+        <div class="form-outline mb-2 mx-1">
+            <label class="form-label">User Name</label>
+            <input type="text" name="username" class="form-control form-control-lg" required />
+        </div>
+
+        <div class="form-outline mb-2 mx-1">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="firstname" class="form-control form-control-lg" required />
+        </div>
+
+        <div class="form-outline mb-2 mx-1">
+            <label class="form-label">Profession</label>
+            <input type="text" name="lastname" class="form-control form-control-lg" placeholder="Ex. Students, Software Developer"/>
+        </div>
+
+        <div class="form-outline mb-2 mx-1">
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control form-control-lg" placeholder="Ex. example@gmail.com" required />
+        </div>
+
+        <div class="form-outline mb-2 mx-1">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control form-control-lg" required />
+        </div>
+
+        <div class="form-check d-flex justify-content-center mb-4">
+            <input type="checkbox" required />
+            <label class="form-check-label text-muted pl-2"> I agree all statements in
+                <a href="/static/text.txt" class="text-white-40 fw-bold">Terms of service</a>
+            </label>
+        </div>
+
+        <div class="d-flex justify-content-center pb-3">
+            <button type="submit" class="btn btn-secondary btn-lg gradient-custom-4 text-body px-5">Register</button>
+        </div>
+
+        <p class="text-center text-muted my-2">Have already an account?
+            <a href="/login" class="text-white-40 fw-bold"><u>Login here</u></a>
+        </p>
+    </form>
+
+</div>
+</div>
+
+{% endblock body %}

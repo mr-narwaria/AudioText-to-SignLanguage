@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--custom css -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!--required library - icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>{% block title %}{% endblock title %} | Audio to Sign Lang </title>
+</head>
+
+<style>
+  .light-mode {
+    background-color: #A1D6E2;
+    color: #121212;
+  }
+
+  .dark-mode {
+    background-color: #121212;
+    color: #FFFFFF;
+  }
+
+  :root {
+    --text-color-dark: #ffffff;
+    --text-color-light: #000000;
+  }
+</style>
+
+<body class="d-flex flex-column min-vh-100">
+  <!-- change navbar related setting -->
+  <nav class="navbar navbar-expand-lg rounded-bottom navbar-dark">
+
+    <a class="navbar-brand text-white" href="/"><img src="{% static 'img/main.png' %}" alt="logo"
+        style="height: 27px; width: 40px;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon text-dark"></span>
+
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/"> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/animation"> Convertor <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/login"> LogIn <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/contact"> ContactUs <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/about"> AboutUs <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a type="button" class="nav-link text-white" onclick="toggleMode()"> Mode <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+
+
+      <form class="form-inline my-lg-0">
+        <div class="input-group">
+          <input class="form-control mr-sm-0" name="search" id="search" type="search" placeholder="Search"
+            aria-label="Search">
+          <button class="btn btn-light my-sm-0 ml-1" type="submit">Search</button>
+        </div>
+      </form>
+
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link text-white muted" href="/logout"> LogOut <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="/profile"> Profile <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- This is Dismissle message -->
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-5 my-2" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <!-- Your main content goes here you can change the background color from hear-->
+  <div class="flex-grow-1">
+    {% block body %}{% endblock body %}
+  </div>
+
+
+
+  <!-- change footer setting -->
+  <div>
+    <footer class="text-center text-white mt-auto pt-3 rounded-top">
+      <div class="container p-1 pb-0">
+        <section class="mb-0">
+          
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="https://twitter.com/sham_narwaria" role="button" target"_blank">
+            <i class="fab fa-twitter fa-lg"></i>
+          </a>
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #ecc519;"
+            href="mailto: s_narwaria@cs.iitr.ac.in" role="button" target="_blank">
+            <i class="fab fa-google fa-lg"></i>
+          </a>
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #E4405F;" href="#!" role="button">
+            <i class="fab fa-instagram fa-lg"></i>
+          </a>
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;"
+            href="https://www.linkedin.com/in/shambhoolal-narwaria-9359b92bb/" role="button" target="_blank">
+            <i class="fab fa-linkedin-in fa-lg"></i>
+          </a>
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;"
+            href="https://github.com/mr-narwaria" role="button" target="_blank">
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+        </section>
+        <hr>
+        <div class="text-white-30 pb-2">
+          © {% now "Y" %} Audio-Text to Sign Language. All Rights Reserved.
+          <a class="text-white" href="#" style="display: block;">audiotext-signLang.com</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- javascript -->
+  <script>
+    function toggleMode() {
+      var body = document.body;
+      var navbar = document.querySelector('nav');
+      var footer = document.querySelector('footer');
+      var textElements = document.querySelectorAll('.td');
+
+      if (body.classList.contains("dark-mode")) {
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+        navbar.style.backgroundColor = '#1995AD'; // Update navbar color for light mode
+        footer.style.backgroundColor = '#1995AD'; // Update footer color for light mode
+        textElements.forEach(function (element) {
+          element.style.color = 'var(--text-color-light)';
+        });
+        localStorage.setItem("mode", "light-mode");
+      } else {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+        navbar.style.backgroundColor = '#1F1B24'; // Update navbar color for dark mode
+        footer.style.backgroundColor = '#1F1B24'; // Update footer color for dark mode
+        localStorage.setItem("mode", "dark-mode");
+        textElements.forEach(function (element) {
+          element.style.color = 'var(--text-color-dark)';
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var savedMode = localStorage.getItem("mode");
+      var body = document.body;
+      var navbar = document.querySelector('nav');
+      var footer = document.querySelector('footer');
+      var textElements = document.querySelectorAll('.td');
+
+      if (savedMode === "dark-mode") {
+        body.classList.add("dark-mode");
+        navbar.style.backgroundColor = '#1F1B24'; // Update navbar color for dark mode
+        footer.style.backgroundColor = '#1F1B24'; // Update footer color for dark mode
+        textElements.forEach(function (element) {
+          element.style.color = 'var(--text-color-dark)';
+        });
+      } else {
+        body.classList.add("light-mode");
+        navbar.style.backgroundColor = '#1995AD'; // Update navbar color for light mode
+        footer.style.backgroundColor = '#1995AD'; // Update footer color for light mode
+        textElements.forEach(function (element) {
+          element.style.color = 'var(--text-color-light)';
+        });
+      }
+    });
+  </script>
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

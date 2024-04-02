@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock title %}
+
+
+{% block body %}
+<div class="container h-75 text-white-20 my-3 rounded px-1" style="max-width: 700px;">
+  <h1 class="text-center text-uppercase pt-4">Contact Us</h1>
+  <form method="post" action="/contact/">
+    {% csrf_token %}
+    <div class="form-outline mb-2 mx-5">
+      <label for="name">Name</label>
+      <input type="text" max-length="10" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+    </div>
+
+    <div class="form-outline mb-2 mx-5">
+      <label for="phone">Phone</label>
+      <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter Phone" pattern="[0-9]{10}">
+    </div>
+
+    <div class="form-outline mb-2 mx-5">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+    </div>
+
+    <div class="form-outline mb-2 mx-5">
+      <label for="desc">Message</label>
+      <textarea type="desc" rows="3" class="form-control" id="desc" name="desc" placeholder="Enter Message"
+        required></textarea>
+    </div>
+
+    <div class="d-flex justify-content-center pb-3">
+      <button type="submit" class="btn btn-secondary btn-lg gradient-custom-4 text-body px-5">Submit</button>
+    </div>
+
+  </form>
+</div>
+{% endblock body %}

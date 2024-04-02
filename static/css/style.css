@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* Adjust font size for small devices */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+/* Adjust font size for medium devices */
+@media (min-width: 576px) and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+}

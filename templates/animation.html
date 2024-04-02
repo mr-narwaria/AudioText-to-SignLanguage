@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}animation{% endblock title %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <!-- For large screens, take up the full width -->
+    <div class="col-lg-12" style="padding-right: 2px; padding-left: 2px;">
+      <h1 class="text-center my-3 py-2 rounded text-white-20">Audio Text To Sign Lang
+        Software</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="text-center text-muted">Enter Text or Use Mic</h2>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" name="sentence" class="form-control form-control-lg" id="speechToText"
+            placeholder="Enter Your Input Here">
+          <div class="input-group-append">
+            <button type="button" class="btn bg-white btn-outline-secondary" onclick="record()">
+              {% load static %}
+              <img src="{% static 'micr.png' %}" height="32px" width="38px" alt="Animation" />
+            </button>
+            <input type="submit" name="submit" class="btn btn-secondary" value="Submit">
+          </div>
+        </div>
+      </form>
+      <table class="table">
+        <tr>
+          <td class="td text-white-20">The text that you entered is:</td>
+          <td class="td">{{ text }}</td>
+        </tr>
+        <tr>
+          <td class="td text-white-20">Key words in sentence:</td>
+          <td class="td text-white-20">
+            <ul class="td" id="list" align="center">
+              {% for word in words %}
+              <li id="{{ forloop.counter }}" style="margin-right: 8px">{{ word }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-center text-muted">Sign Language Animation</h2>
+      <div class="text-center">
+        <button class="btn btn-secondary btn-lg" onclick="playPause()">Play/Pause</button>
+        <video id="videoPlayer" class="mt-3" width="100%" height="auto" preload="auto" autoplay>
+          <source src="" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- this javascript for animation -->
+<script>
+  function record() {
+    var recognition = new webkitSpeechRecognition();
+    recognition.lang = 'en-IN';
+
+    recognition.onresult = function (event) {
+      console.log(event)
+      document.getElementById('speechToText').value = event.results[0][0].transcript;
+    }
+    recognition.start();
+  }
+
+  function play() {
+    var videoSource = [];
+    var videos = document.getElementById("list").getElementsByTagName("li");
+    for (var j = 0; j < videos.length; j++) {
+      videoSource[j] = "/static/" + videos[j].innerHTML + ".mp4";
+    }
+
+    var i = 0;
+    var videoCount = videoSource.length;
+
+    function videoPlay(videoNum) {
+      document.getElementById("list").getElementsByTagName("li")[videoNum].style.color = "#09edc7";
+      document.getElementById("list").getElementsByTagName("li")[videoNum].style.fontSize = "xx-large";
+      document.getElementById("videoPlayer").setAttribute("src", videoSource[videoNum]);
+      document.getElementById("videoPlayer").load();
+      document.getElementById("videoPlayer").play();
+    }
+
+    document.getElementById('videoPlayer').addEventListener('ended', myHandler, false);
+    document.getElementById("list").getElementsByTagName("li")[0].style.color = "#09edc7";
+    document.getElementById("list").getElementsByTagName("li")[0].style.fontSize = "xx-large";
+
+    videoPlay(0);
+
+    function myHandler() {
+      document.getElementById("list").getElementsByTagName("li")[i].style.color = "#feda6a";
+      document.getElementById("list").getElementsByTagName("li")[i].style.fontSize = "20px";
+      i++;
+      if (i == videoCount) {
+        document.getElementById("videoPlayer").pause();
+      }
+      else {
+        videoPlay(i);
+      }
+    }
+  }
+
+  function playPause() {
+    var videoPlayer = document.getElementById("videoPlayer");
+    if (videoPlayer.paused) {
+      play();
+    }
+    else {
+      videoPlayer.pause();
+    }
+  }
+
+  window.onload = function() {
+    play();
+  }
+</script>
+{% endblock body %}

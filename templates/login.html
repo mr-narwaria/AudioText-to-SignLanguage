@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Log In Page{% endblock title %}
+
+{% block body %}
+<div class="container rounded h-75 my-5 pb-4 " style="max-width: 700px">
+  <h2 class="text-uppercase text-center mb-4 my-4 py-3">Login</h2>
+  <p class="text-white-10 text-center">Please enter your login and password!</p>
+
+
+
+
+  <!-- {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+  {% endif %} -->
+
+
+
+
+  <form method="post" action="/login/">
+    {% csrf_token %}
+    <div class="form-outline mb-2 mx-1">
+      <label class="form-label" for="username">User Name</label>
+      <input type="text" id="username" name="username" class="form-control form-control-lg" autocomplete="given-name"
+        required />
+    </div>
+
+    <div class="form-outline mb-2 mx-1">
+      <label class="form-label" for="password">Password</label>
+      <input type="password" id="password" name="password" class="form-control form-control-lg" required />
+    </div>
+
+    <p class="small mb-2 pb-lg-2 text-center"><a class="text-white-25" href="#!">Forgot password?</a></p>
+
+    <div class="d-flex justify-content-center pb-3">
+      <button type="submit" class="btn btn-secondary btn-lg gradient-custom-4 text-body px-5">Login</button>
+    </div>
+
+    <div class="text-center text-white-10">
+      Don't have an account? <a href="/signup" class="text-white-40 fw-bold">Sign Up</a>
+    </div>
+  </form>
+</div>
+
+{% endblock body %}
