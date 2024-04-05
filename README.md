@@ -19,9 +19,13 @@ Project Demo Video:
 
 Create Virtual environment by using virtualenv 
 command
+
 pip install virtualenv
+
 python -m venv venv
-activate virtual environment command: 
+
+activate virtual environment command:
+
 venv\Scripts\activate
 
 pip install -r requirements.txt
