@@ -4,7 +4,7 @@ A Web Application that takes in live audio speech recording as input, converts i
 
 # Technology Requirement 
 > - Django Framework is used for website building and backend control.
-> - Frontend using HTML,CSS,JavaScript.
+> - Frontend using HTML, CSS, and JavaScript.
 > - Text Preprocessing using Natural Language Toolkit(NLTK).
 
 ## Prerequisites
@@ -17,14 +17,14 @@ A Web Application that takes in live audio speech recording as input, converts i
 Project Demo Video:
 
 
-Create Virtual environment by using virtualenv 
+Create a Virtual environment by using virtualenv 
 command
 
 pip install virtualenv
 
 python -m venv venv
 
-activate virtual environment command:
+Activate virtual environment command:
 
 venv\Scripts\activate
 
