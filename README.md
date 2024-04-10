@@ -15,7 +15,7 @@ A Web Application that takes in live audio speech recording as input, converts i
 
 
 Project Demo Video:
-
+## How to run
 
 1. Create a Virtual environment:
 ```bash
@@ -41,3 +41,9 @@ python manage.py migrate
 ```bash
 python manage.py runserver 8000
 ```
+
+## Authors
+
+- [Shambhoolal Narwaria](https://github.com/mr-narwaria)
+- [Alhan Charan Beshra](https://github.com/ezio2605)
+- [Abhishek Raj](https://github.com/Abhi9708bittu)
