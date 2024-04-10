@@ -17,21 +17,27 @@ A Web Application that takes in live audio speech recording as input, converts i
 Project Demo Video:
 
 
-Create a Virtual environment by using virtualenv 
-command
-
-pip install virtualenv
-
+1. Create a Virtual environment:
+```bash
 python -m venv venv
-
-Activate virtual environment command:
-
+```
+2. Activate virtual environment:
+```bash
 venv\Scripts\activate
-
+```
+3. Install required package:
+```bash
 pip install -r requirements.txt
-
+```
+4. ready for migrations
+```bash
 python manage.py makemigrations
-
+```
+5. migrate
+```bash
 python manage.py migrate
-
+```
+6. run the software
+```bash
 python manage.py runserver 8000
+```
